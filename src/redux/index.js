@@ -1,4 +1,4 @@
-// store.js
+// Notre store
 
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 

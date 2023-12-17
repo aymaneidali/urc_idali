@@ -24,12 +24,10 @@ const Signup: React.FC = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    // Appeler la fonction registerUser ici
     registerUser(
       registrationData,
       (session) => {
 
-        // Gérer le résultat (par exemple, rediriger l'utilisateur vers une page de connexion)
         console.log('User registered successfully:', session);
         setLoading(false);
         dispatch(SET_SESSION(session));
@@ -37,7 +35,6 @@ const Signup: React.FC = () => {
       },
       (registrationError) => {
         setLoading(false);
-        // Gérer les erreurs (par exemple, afficher un message d'erreur)
         setError({ message: registrationError.message });
       }
     );
@@ -52,15 +49,16 @@ const Signup: React.FC = () => {
   return (
     <Box
     maxW="xl"
-    minWidth="500px" // Définissez la largeur minimale souhaitée
-    margin="auto" // Pour centrer la boîte horizontalement
-    p={8} // Espacement interne
-    borderWidth="1px" // Bordure
-    marginTop="20" // Ajoutez une marge en haut
-    borderRadius="md" // Bordure arrondie
-    boxShadow="md" // Ombre
+    minWidth="400px"
+    margin="auto"
+    p={8}
+    borderWidth="1px"
+    marginTop="50px"
+    borderRadius="lg"
+    boxShadow="2xl"
+    bg="gray.100"
   >
-      <Heading mb={4} textAlign="center" size="lg">
+      <Heading mb={6} textAlign="center" size="xl" color="purple.600">
         Inscription
       </Heading>
       <form onSubmit={handleSubmit}>
@@ -93,25 +91,26 @@ const Signup: React.FC = () => {
             onChange={handleChange}
           />
         </FormControl>
-        <Button type="submit" width="100%" colorScheme="teal" disabled={loading}>
-          {loading ? <Spinner size="sm" /> : 'Inscription'}
+        <Button type="submit" width="100%" colorScheme="purple" isLoading={loading}>
+          Inscription
         </Button>
       </form>
 
-      {/* Display errors similar to the login form */}
+      {}
       {error.message && (
         <Box mt={4} color="red.500">
           <span>{error.message}</span>
         </Box>
       )}
 
-      <Box mt={4} textAlign="center">
-        <span>Vous avez déjà un compte ?</span>{' '}
-        <Link as={RouterLink} to="/login" color="teal.500">
+<Box mt={4} textAlign="center">
+        <span>Vous avez déjà un compte ? </span>
+        <Link as={RouterLink} to="/login" color="purple.600">
           Connectez-vous
         </Link>
       </Box>
     </Box>
+    
   );
 };
 

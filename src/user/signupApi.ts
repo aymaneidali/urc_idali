@@ -12,7 +12,6 @@ export function registerUser(user: User, onResult: SessionCallback, onError: Err
   })
     .then(async (response) => {
       if (response.ok) {
-        // Registration successful, proceed to login
         loginUser(user, onResult, onError);
       } else {
         const error = (await response.json()) as CustomError;
@@ -20,7 +19,6 @@ export function registerUser(user: User, onResult: SessionCallback, onError: Err
       }
     })
     .catch((error) => {
-      // Handle other errors, e.g., network issues
       console.error(error);
       const networkError: CustomError = { name: 'NetworkError', code: "NETWORK_ERROR", message: "Network error occurred" };
       onError(networkError);

@@ -47,19 +47,20 @@ export function Login() {
     };
 
     return (
-        <Box
-          maxW="xl"
-          minWidth="500px" // Définissez la largeur minimale souhaitée
-          margin="auto" // Pour centrer la boîte horizontalement
-          p={8} // Espacement interne
-          borderWidth="1px" // Bordure
-          marginTop="20" // Ajoutez une marge en haut
-          borderRadius="md" // Bordure arrondie
-          boxShadow="md" // Ombre
-        >
-            <Heading mb={4} textAlign="center" size="lg">
-                Connexion
-            </Heading>
+      <Box
+      maxW="xl"
+      minWidth="400px"
+      margin="auto"
+      p={8}
+      borderWidth="1px"
+      marginTop="50px"
+      borderRadius="lg"
+      boxShadow="2xl"
+      bg="gray.100"
+    >
+             <Heading mb={6} textAlign="center" size="xl" color="purple.500">
+        Connexion
+      </Heading>
           <form onSubmit={handleSubmit}>
             <FormControl mb={4}>
               <FormLabel>Login</FormLabel>
@@ -69,9 +70,9 @@ export function Login() {
               <FormLabel>Password</FormLabel>
               <Input type="password" name="password" placeholder="Enter your password" />
             </FormControl>
-            <Button type="submit" width="100%" colorScheme="teal" disabled={loading}>
-              {loading ? <Spinner size="sm" /> : 'Connexion'}
-            </Button>
+            <Button type="submit" width="100%" colorScheme="purple" isLoading={loading}>
+          Connexion
+        </Button>
           </form>
 
           {session.token && (
@@ -87,12 +88,13 @@ export function Login() {
                 <span>{error.message}</span>
             </Box>
         )}
-            <Box mt={4} textAlign="center">
-                <span>Vous n&apos;avez pas encore de compte ?</span>{' '}
-                <Link as={RouterLink} to="/signup" color="teal.500">
-                Créer un compte
-                </Link>
-            </Box>
-        </Box>
+              <Box mt={4} textAlign="center">
+        <span>Vous n avez pas encore de compte ? </span>
+        <Link as={RouterLink} to="/signup" color="purple.500">
+          Créer un compte
+        </Link>
+      </Box>
+    </Box>
+        
       );
 }

@@ -7,14 +7,16 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 const MessagesMenu = () => {
 
-  const session = useSelector((state: RootState) =>state.session.session)
-  const {id} = useParams();
+  const session = useSelector((state: RootState) => state.session.session)
+  const { id } = useParams();
 
   return (
-    <Box ml='100' mt='0'>
-      <Box><UsersList/><Chat/></Box>
-
-    </Box>
+    <div style={{display : "flex",height : "80vh" ,flexDirection : "row"}}>
+      <UsersList />
+        <Chat />
+    </div>
+        
+     
   )
 }
 

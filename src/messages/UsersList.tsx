@@ -30,7 +30,7 @@ const UserList = () => {
       } catch (error) {
         console.error("Erreur lors de la récupération des utilisateurs:", error);
       } finally {
-        setLoading(false); // Met fin au chargement, que ce soit réussi ou non
+        setLoading(false);  
       }
     };
 
@@ -39,47 +39,47 @@ const UserList = () => {
 
 
   const handleUserClick = (userId: number) => {
-    // Vous pouvez ajouter le comportement que vous souhaitez lorsqu'un utilisateur est cliqué
     navigate(`/messages/user/${userId}`);
   };
 
   return (
     <Box
-     width={['80%', '25%']}
-     >
-      {loading ? (
-        // Afficher un Spinner pendant le chargement
+    width={['80%', '25%']}
+    
+    margin="30px"
+    padding="30px"
+    borderRadius="33px 0"
+    bg="purple.100"
+    boxShadow="xl" 
+  >
+       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" height="30vh">
           <Spinner size="xl" />
         </Box>
       ) : (
         <Box>
-          <Heading
+           <Heading
             fontSize="2xl"
             mb="4"
-            padding="4"
-            color="teal.500"
-            borderBottom="1px solid teal"
+            borderBottom="2px solid" 
+            borderBottomColor="purple.500"
+            color="purple.500" 
           >
             Utilisateurs
           </Heading>
           <ul>
-            {users.map((user) =>
-            user.user_id!==session.id
-            &&(
-
+          {users.map((user) => user.user_id !== session.id && (
               <Box
                 key={user.user_id}
                 onClick={() => handleUserClick(user.user_id)}
-
-                backgroundColor={ user.user_id == receiver_id ? "gray.300" : "gray.100"}
+                backgroundColor={user.user_id === receiver_id ? "gray.300" : "gray.100"}
                 p="3"
                 mb="2"
-                borderRadius="5px"
+                borderRadius="md"
                 cursor="pointer"
-                _hover={{ backgroundColor: "blue.100" }}
+                _hover={{ backgroundColor: "purple.100", color: "purple.700" }} 
               >
-                <Text fontSize="lg" fontWeight="bold" color="blue.500">
+                 <Text fontSize="lg" fontWeight="bold" color="purple.600">
                   {user.username}
                 </Text>
                 <Text fontSize="sm" color="gray.500">
@@ -88,15 +88,7 @@ const UserList = () => {
               </Box>
             ))}
           </ul>
-          {/* <Heading
-            fontSize="2xl"
-            mb="4"
-            padding="4"
-            color="teal.500"
-            borderBottom="1px solid teal"
-          >
-            Salons
-          </Heading> */}
+          {}
         </Box>
       )}
     </Box>

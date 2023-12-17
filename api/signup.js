@@ -10,14 +10,11 @@ export default async function handler(request) {
   try {
     const { email, username, password } = await request.json();
 
-    // Hash the password using SHA-256
     const hash = await crypto.subtle.digest('SHA-256', stringToArrayBuffer(username + password));
     const hashed64 = arrayBufferToBase64(hash);
 
-    // Check if the user already exists
     const client = await db.connect();
     const {rowCount, rows} = await client.sql`SELECT * FROM users WHERE username = ${username} OR email = ${email}`;
-    // const userCheckResult = await userCheckQuery.fetch();
 
     if (rowCount > 0) {
       const error = { code: 'CONFLICT', message: 'Un utilisateur avec le meme email ou pseudo existe deja' };
@@ -28,7 +25,6 @@ export default async function handler(request) {
     }
 
     const external_id = crypto.randomUUID().toString();
-    // If user doesn't exist, proceed with registration
     const res = await client.sql`
       INSERT INTO users (username, email, password, created_on, external_id)
       VALUES (${username}, ${email}, ${hashed64}, now(), ${external_id})

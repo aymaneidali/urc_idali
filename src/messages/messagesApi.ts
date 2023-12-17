@@ -12,22 +12,19 @@ export async function sendMessage(message : Message): Promise<void> {
       });
 
       if (response.ok) {
-        // const users = await response.json();
         console.log("Message envoyé !");
-        // Utiliser la liste des utilisateurs récupérée
       } else {
         try {
           const errorResponse = await response.json();
-          // Gérer l'erreur côté client (ex: afficher un message d'erreur)
           console.error("Erreur côté serveur:", errorResponse);
         } catch (error) {
           console.error("Erreur lors de la conversion de la réponse JSON:", error);
         }
-        // Retourner un tableau vide en cas d'erreur
+        
       }
     } catch (error) {
       console.error("Erreur lors de l'envoi du message:", error);
-      // Retourner un tableau vide en cas d'erreur
+      
     }
   }
 
@@ -46,21 +43,21 @@ export async function getMessages(message : Message): Promise<Message[]> {
     if (response.ok) {
       const messages = await response.json();
       return messages as Message[];
-      // console.log("Message envoyé !");
+      
     } else {
       try {
         const errorResponse = await response.json();
-        // Gérer l'erreur côté client (ex: afficher un message d'erreur)
+        
         console.error("Erreur côté serveur:", errorResponse);
       } catch (error) {
         console.error("Erreur lors de la conversion de la réponse JSON:", error);
       }
-        // Retourner un tableau vide en cas d'erreur
+        
         return [];
       }
   } catch (error) {
     console.error("Erreur lors de l'envoi du message:", error);
-    // Retourner un tableau vide en cas d'erreur
+    
     return [];
   }
 }

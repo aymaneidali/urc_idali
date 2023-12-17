@@ -38,7 +38,6 @@ export default async function handler(request) {
     `;
 
     if (rowCount === 0) {
-        /* Vercel bug doesn't allow 204 response status */
         return new Response("[]", {
             status: 200,
             headers: {'content-type': 'application/json'},
